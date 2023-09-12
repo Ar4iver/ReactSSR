@@ -1,6 +1,5 @@
 import express from 'express'
 import  ReactDOM from 'react-dom/server';
-import { Header } from '../shared/Header'
 import { App } from '../App.tsx'
 import { indexTemplate } from './indexTemplate';
 
