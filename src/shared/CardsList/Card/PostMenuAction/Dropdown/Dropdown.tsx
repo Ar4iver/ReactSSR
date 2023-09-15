@@ -33,9 +33,7 @@ export function Dropdown({
       <div onClick={handleOpen}>{button}</div>
       {isDropdownOpen && (
         <div className={styles.listContainer}>
-          <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
-            {children}
-          </div>
+          <div className={styles.list}>{children}</div>
         </div>
       )}
     </div>
