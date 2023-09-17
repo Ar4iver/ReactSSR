@@ -1,5 +1,43 @@
-button{
+button {
     display: flex;
     gap: 6px;
     align-items: center;
+}
+
+.container {
+    position: absolute;
+    background-color: var(--white);
+    top: 20px;
+    left: -56px;
+    z-index: 10;
+    border-radius: 3px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+
+    .actions {
+        width: 100%;
+        padding: 10px 20px 0px 20px;
+
+        .buttonMenu {
+            width: 100%;
+            margin-bottom: 10px;
+
+            span {
+                color: var(--grey99);
+            }
+        }
+    }
+
+    .closeButtonMenu {
+        padding: 10px 13px;
+        background-color: var(--greyD9);
+        border-radius: 0px 0px 3px 3px;
+
+        button {
+            margin: 0 auto;
+            
+            span {
+                color: var(--grey66);
+            }
+        }
+    }
 }

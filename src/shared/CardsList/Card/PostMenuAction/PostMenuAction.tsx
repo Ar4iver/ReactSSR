@@ -8,7 +8,7 @@ import { DropdownButton } from '../../../ui/DropdownButton/DropdownButton.tsx'
 export function PostMenuAction() {
   return (
     <div className={styles.menu}>
-      <Dropdown isOpen={true} button={<DropdownButton />}>
+      <Dropdown button={<DropdownButton />}>
         <DropdownPostMenu />
       </Dropdown>
       <CounterPost />

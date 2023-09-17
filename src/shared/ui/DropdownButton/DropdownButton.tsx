@@ -6,7 +6,6 @@ interface IDropdownButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export const DropdownButton: React.FC<IDropdownButtonProps> = (props) => {
-  console.log(props)
   return (
     <button {...props} className={styles.menuButton}>
       <svg
