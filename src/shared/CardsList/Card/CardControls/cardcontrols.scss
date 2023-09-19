@@ -1,23 +1,4 @@
-.commentsButton {
-    display: flex;
-    align-items: normal;
-}
-
-.commentsButton * {
-    color: var(--greyC4);
-}
-
-.commentsNumber {
-    padding: 0 0 0 6px;
-    font-size: 12px;
-    line-height: 14px;
-}
-
-@media all and (min-width: 1024px) {
-    .commentsButton {
-        display: none;
-    }
-}
+/////////////////////controls///////////////////////////////
 
 .controls {
     position: relative;
@@ -46,6 +27,8 @@
         display: none;
     }
 }
+
+//////////////////////karmacounter////////////////////////////
 
 .karmaCounter>*+* {
     padding: 0 0 0 4px;
@@ -90,12 +73,39 @@ svg.down {
     }
 }
 
-.saveButton {
+///////////////////ComentsButton////////////////////////////////
+
+.commentsButton {
+    display: flex;
+    align-items: normal;
+}
+
+.commentsButton * {
+    color: var(--greyC4);
+}
+
+.commentsNumber {
+    padding: 0 0 0 6px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+@media all and (min-width: 1024px) {
+    .commentsButton {
+        display: none;
+    }
+}
+
+/////////////////////sharebutton/////////////////////////
+
+.shareButton {
     width: 20px;
     height: 20px;
 }
 
-.shareButton {
+/////////////////////savebutton/////////////////////////
+
+.saveButton {
     width: 20px;
     height: 20px;
 }

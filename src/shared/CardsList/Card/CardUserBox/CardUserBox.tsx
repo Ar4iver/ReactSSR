@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './usermeta.scss'
+import styles from './carduserbox.scss'
 
-export function UserMeta() {
+export function CardUserBox() {
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>

@@ -1,0 +1,234 @@
+/////////////////////break////////////////////////////////////
+
+.s4 {
+    padding: 0 4px 0 0;
+}
+
+.s8 {
+    padding: 0 8px 0 0;
+}
+
+.s12 {
+    padding: 0 12px 0 0;
+}
+
+.s16 {
+    padding: 0 16px 0 0;
+}
+
+.s20 {
+    padding: 0 20px 0 0;
+}
+
+.inline {
+    display: inline;
+}
+
+.top.s4 {
+    padding: 4px 0 0;
+}
+
+.top.s8 {
+    padding: 8px 0 0;
+}
+
+.top.s12 {
+    padding: 12px 0 0;
+}
+
+.top.s16 {
+    padding: 16px 0 0;
+}
+
+.top.s20 {
+    padding: 20px 0 0;
+}
+
+@media all and (max-width: 1023px) {
+    .mobile_s4 {
+        padding: 0 4px 0 0;
+    }
+
+    .mobile_s8 {
+        padding: 0 8px 0 0;
+    }
+
+    .mobile_s12 {
+        padding: 0 12px 0 0;
+    }
+
+    .mobile_s16 {
+        padding: 0 16px 0 0;
+    }
+
+    .mobile_s20 {
+        padding: 0 20px 0 0;
+    }
+
+    .top.mobile_s4 {
+        padding: 4px 0 0;
+    }
+
+    .top.mobile_s8 {
+        padding: 8px 0 0;
+    }
+
+    .top.mobile_s12 {
+        padding: 12px 0 0;
+    }
+
+    .top.mobile_s16 {
+        padding: 16px 0 0;
+    }
+
+    .top.mobile_s20 {
+        padding: 20px 0 0;
+    }
+}
+
+@media all and (min-width: 1024px) and (max-width: 1539px) {
+    .tablet_s4 {
+        padding: 0 4px 0 0;
+    }
+
+    .tablet_s8 {
+        padding: 0 8px 0 0;
+    }
+
+    .tablet_s12 {
+        padding: 0 12px 0 0;
+    }
+
+    .tablet_s16 {
+        padding: 0 16px 0 0;
+    }
+
+    .tablet_s20 {
+        padding: 0 20px 0 0;
+    }
+
+    .top.tablet_s4 {
+        padding: 4px 0 0;
+    }
+
+    .top.tablet_s8 {
+        padding: 8px 0 0;
+    }
+
+    .top.tablet_s12 {
+        padding: 12px 0 0;
+    }
+
+    .top.tablet_s16 {
+        padding: 16px 0 0;
+    }
+
+    .top.tablet_s20 {
+        padding: 20px 0 0;
+    }
+}
+
+@media all and (min-width: 1540px) {
+    .desktop_s4 {
+        padding: 0 4px 0 0;
+    }
+
+    .desktop_s8 {
+        padding: 0 8px 0 0;
+    }
+
+    .desktop_s12 {
+        padding: 0 12px 0 0;
+    }
+
+    .desktop_s16 {
+        padding: 0 16px 0 0;
+    }
+
+    .desktop_s20 {
+        padding: 0 20px 0 0;
+    }
+
+    .top.desktop_s4 {
+        padding: 4px 0 0;
+    }
+
+    .top.desktop_s8 {
+        padding: 8px 0 0;
+    }
+
+    .top.desktop_s12 {
+        padding: 12px 0 0;
+    }
+
+    .top.desktop_s16 {
+        padding: 16px 0 0;
+    }
+
+    .top.desktop_s20 {
+        padding: 20px 0 0;
+    }
+}
+
+///////////////////////menu///////////////////////////////
+
+.menu {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    padding: 0;
+}
+
+.menuButton {
+    width: 31px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(90deg);
+    border-radius: 31px;
+}
+
+.menuButton:active {
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    background-color: var(--white);
+}
+
+.closeButton {
+    background-color: var(--greyD9);
+    padding: 12px 23px;
+    border-radius: 0 0 3px 3px;
+    width: 100%;
+}
+
+@media all and (min-width: 1024px) {
+    .menu {
+        position: relative;
+        order: 2;
+        display: flex;
+        align-items: center;
+        flex: 0 0;
+        top: unset;
+        right: unset;
+        margin: 0 0 0 auto;
+    }
+
+    .menuButton {
+        align-self: center;
+        transform: unset;
+    }
+}
+
+@media all and (min-width: 1540px) {
+    .menuButton:hover {
+        background-color: rgba(51, 51, 51, 0.1);
+    }
+}

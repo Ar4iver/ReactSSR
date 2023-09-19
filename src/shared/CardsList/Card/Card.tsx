@@ -1,15 +1,17 @@
 import React from 'react'
 import styles from './card.scss'
-import { UserMeta } from './UserMeta/UserMeta.tsx'
-import { PostPreview } from './PostPreview/PostPreview.tsx'
-import { PostMenuAction } from './PostMenuAction/PostMenuAction.tsx'
+import { CardUserBox } from './CardUserBox/CardUserBox.tsx'
+import { CardPreview } from './CardPreview/CardPreview.tsx'
+import { CardMenu } from './CardMenu/CardMenu.tsx'
+import { CardControls } from './CardControls/CardControls.tsx'
 
 export function Card() {
   return (
     <li className={styles.card}>
-      <UserMeta />
-      <PostPreview />
-      <PostMenuAction />
+      <CardUserBox />
+      <CardPreview />
+      <CardMenu />
+      <CardControls />
     </li>
   )
 }
