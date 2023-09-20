@@ -4,6 +4,10 @@
     align-items: center;
     font-size: 14px;
     width: 100%;
+
+    span {
+        color: var(--grey99);
+    }
 }
 
 .buttonMenu:not(:last-child) {

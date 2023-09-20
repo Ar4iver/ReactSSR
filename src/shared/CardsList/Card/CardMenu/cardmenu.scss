@@ -187,6 +187,11 @@
     justify-content: center;
     transform: rotate(90deg);
     border-radius: 31px;
+
+    span {
+        font-size: 14px;
+        color: var(--greyD9);
+    }
 }
 
 .menuButton:active {
