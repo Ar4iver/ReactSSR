@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './cardcontrols.scss'
-import { Button } from '../../../ui/Button/Button/Button.tsx'
+import { Button } from '../../../ui/Button/Button.tsx'
 import {
   ArrowDowmIcon,
   ArrowUpIcon,

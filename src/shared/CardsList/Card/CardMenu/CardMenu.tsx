@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './cardmenu.scss'
 import { ActionMenuIcon } from '../../../icons/icons.tsx'
-import { Button } from '../../../ui/Button/Button/Button.tsx'
+import { Button } from '../../../ui/Button/Button.tsx'
 import { Dropdown } from '../../../Dropdown/Dropdown.tsx'
 import { DropdownPostMenu } from './DropdownPostMenu/DropdownPostMenu.tsx'
 
