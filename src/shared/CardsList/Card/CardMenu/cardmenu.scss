@@ -197,6 +197,7 @@
     position: absolute;
     right: 0;
     top: 10px;
+    z-index: 10;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-radius: 3px;
     background-color: var(--white);
@@ -207,6 +208,12 @@
     padding: 12px 23px;
     border-radius: 0 0 3px 3px;
     width: 100%;
+
+    span {
+        font-size: 14px;
+        line-height: normal;
+        color: var(--grey66);
+    }
 }
 
 @media all and (min-width: 1024px) {

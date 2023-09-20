@@ -20,7 +20,7 @@ export function CardMenu() {
       >
         <div className={styles.dropdown}>
           <DropdownPostMenu postId="1234" />
-          <Button className={styles.closeButton}>
+          <Button showBorder={false} className={styles.closeButton}>
             <span>Закрыть</span>
           </Button>
         </div>
