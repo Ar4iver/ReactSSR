@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals')
+const Dotenv = require('dotenv-webpack');
 
 
 const NODE_ENV = process.env.NODE_ENV
@@ -52,4 +53,7 @@ module.exports = {
     optimization: {
         minimize: false,
     },
+    plugins: [
+        new Dotenv()
+    ]
 }

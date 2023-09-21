@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 
 const NODE_ENV = process.env.NODE_ENV
@@ -71,7 +72,8 @@ module.exports = {
     ? [
         new CleanWebpackPlugin(),
         new ReactRefreshWebpackPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new Dotenv()
     ] 
     : [],
 };
