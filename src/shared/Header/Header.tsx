@@ -3,15 +3,17 @@ import styles from './header.scss'
 import { SearchBlock } from './SearchBlock/SearchBlock.tsx'
 import { ThreadTitle } from './ThreadTitle/ThreadTitle.tsx'
 import { SortBlock } from './SortBlock/SortBlock.tsx'
-import { UserBlock } from './UserBox/UserBlock.tsx'
 
-export function Header() {
+interface IHeaderProps {
+  token: string
+}
+
+export function Header({ token }: IHeaderProps) {
   return (
     <header className={styles.header}>
-      {/* <SearchBlock /> */}
+      <SearchBlock token={token} />
       <ThreadTitle />
       <SortBlock />
-      <UserBlock />
     </header>
   )
 }
