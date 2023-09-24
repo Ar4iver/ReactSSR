@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import styles from './searchblock.scss'
 import { UserBlock } from '../UserBox/UserBlock.tsx'
-import axios from 'axios'
 
 interface ISearchBlockProps {
-  token: string | null
+  token: string
 }
 
 interface IUserData {
@@ -17,15 +17,13 @@ export function SearchBlock({ token }: ISearchBlockProps) {
   useEffect(() => {
     axios
       .get('https://oauth.reddit.com/api/v1/me', {
-        headers: { Authorization: `bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then((res) => {
-        const userData = res.data
-        setData({ name: userData.name, iconImg: userData.icon_img })
+      .then((resp) => {
+        console.log(resp)
       })
       .catch(console.log)
   }, [])
-
   return (
     <div className={styles.searchBlock}>
       <UserBlock />
