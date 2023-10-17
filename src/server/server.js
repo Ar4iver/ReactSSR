@@ -30,9 +30,9 @@ app.get('/auth', (req, res) => {
         indexTemplate(ReactDOM.renderToString(<App />), data['access_token'])
       )
     })
-    .catch(console.log)
+    .catch()
 })
 
 app.listen(3000, () => {
-  console.log('Server started on htpp://localhost:3000')
+  console.log('Server started on http://localhost:3000')
 })
