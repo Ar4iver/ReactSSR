@@ -1,10 +1,6 @@
 import React, { createContext } from 'react'
 import { useUserData } from '../hooks/useUserData.ts'
-
-export interface IUserContextData {
-  name?: string
-  iconImg?: string
-}
+import { IUserContextData } from '../../types/types.ts'
 
 export const userContext = createContext<IUserContextData>({})
 
