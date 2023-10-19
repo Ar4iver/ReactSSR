@@ -188,6 +188,10 @@ button {
     flex-flow: row wrap;
 }
 
+.card:not(:last-child) {
+    margin-bottom: 25px;
+}
+
 .card>*,
 .textContent>* {
     flex: 1 1 100%;
@@ -786,4 +790,8 @@ svg.down {
     .userLink:hover a {
         text-decoration: underline;
     }
+}
+
+.cardsList:not(:last-child) {
+    margin-bottom: 25px;
 }
