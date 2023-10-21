@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './global.scss'
 import { Layout } from './shared/Layout/Layout.tsx'
 import { Header } from './shared/Header/Header.tsx'
@@ -8,21 +8,33 @@ import { useToken } from './shared/hooks/useToken.ts'
 import { tokenContext } from './shared/context/tokenContext.ts'
 import { UserContextProvider } from './shared/context/userContext.tsx'
 import { PostsContextProvider } from './shared/context/PostsContext.tsx'
+import { commentContext } from './shared/context/commentContext.ts'
 
 const App = () => {
   const [token] = useToken()
+  const [commentValue, setCommentValue] = useState('')
+
+  const CommentProvider = commentContext.Provider
+
   return (
     <tokenContext.Provider value={token}>
-      <PostsContextProvider>
-        <UserContextProvider>
-          <Layout>
-            <Header />
-            <Content>
-              <CardsList />
-            </Content>
-          </Layout>
-        </UserContextProvider>
-      </PostsContextProvider>
+      <CommentProvider
+        value={{
+          value: commentValue,
+          onChange: setCommentValue,
+        }}
+      >
+        <PostsContextProvider>
+          <UserContextProvider>
+            <Layout>
+              <Header />
+              <Content>
+                <CardsList />
+              </Content>
+            </Layout>
+          </UserContextProvider>
+        </PostsContextProvider>
+      </CommentProvider>
     </tokenContext.Provider>
   )
 }

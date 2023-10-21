@@ -11,6 +11,7 @@ export function CardsList() {
       {postsData.map((post: IPost) => (
         <Card
           key={post.data.id}
+          postId={post.data.id}
           title={post.data.sr_detail.title}
           previewImg={post.data.sr_detail.header_img}
           avatar={post.data.sr_detail.icon_img}

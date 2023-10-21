@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './carduserbox.scss'
-import { ICardUserProps } from '../../../../types/types'
+import Title from './Title/Title.tsx'
+import { ICardUserBoxProps } from '../../../../types/types.ts'
 
-export function CardUserBox({ avatar, username, title }: ICardUserProps) {
+export function CardUserBox({ avatar, username, title }: ICardUserBoxProps) {
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>
@@ -17,11 +18,7 @@ export function CardUserBox({ avatar, username, title }: ICardUserProps) {
           назад
         </span>
       </div>
-      <h2 className={styles.title}>
-        <a href="#post-url" className={styles.postLink}>
-          {title}
-        </a>
-      </h2>
+      <Title title={title} />
     </div>
   )
 }

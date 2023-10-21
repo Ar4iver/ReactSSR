@@ -30,7 +30,12 @@ export interface IPost {
   content: string
 }
 
+export interface ISinglePost {
+  onClose?: () => void
+}
+
 export interface ICardProps {
+  postId: number | string
   avatar: string
   previewImg: string
   username: string
@@ -38,12 +43,22 @@ export interface ICardProps {
   content: string
 }
 
-export interface ICardUserProps {
+export interface ICardUserBoxProps {
+  postId: string | number
   avatar: string
   username: string
   title: string
 }
 
+export interface ICardUserBoxTitle {
+  title: string
+}
+
 export interface ICardPreviewProps {
   previewImg: string
+}
+
+export interface ICommentContextProps {
+  value: string
+  onChange: (value: string) => void
 }

@@ -12,10 +12,16 @@ export function Card({
   content,
   username,
   previewImg,
+  postId,
 }: ICardProps) {
   return (
     <li className={styles.card}>
-      <CardUserBox avatar={avatar} username={username} title={title} />
+      <CardUserBox
+        avatar={avatar}
+        username={username}
+        title={title}
+        postId={postId}
+      />
       <CardPreview previewImg={previewImg} />
       <CardMenu />
       <CardControls />
