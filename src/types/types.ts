@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface IUserData {
   name?: string
   iconImg?: string
@@ -61,4 +63,25 @@ export interface ICardPreviewProps {
 export interface ICommentContextProps {
   value: string
   onChange: (value: string) => void
+}
+
+export interface IDropdownProps {
+  button: React.ReactNode
+  children: React.ReactNode
+  isOpen?: boolean
+  dropdownRoot: string
+  onOpen?: () => void
+  onClose?: () => void
+}
+
+export interface Position {
+  top: number
+  left: number
+  width?: number
+  height?: number
+}
+
+export interface IDropdownContent {
+  children: React.ReactNode
+  dropdownRoot: string
 }

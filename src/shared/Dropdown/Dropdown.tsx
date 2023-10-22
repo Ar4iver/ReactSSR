@@ -1,13 +1,7 @@
-import React, { ReactNode, useEffect, useState } from 'react'
-import styles from './dropdown.scss'
-
-interface IDropdownProps {
-  button: ReactNode
-  children: ReactNode
-  isOpen?: boolean
-  onOpen?: () => void
-  onClose?: () => void
-}
+import React, { MouseEvent, useEffect, useRef, useState } from 'react'
+import styles from './style/dropdown.scss'
+import { DropdownContent } from './DropdownContent/DropdownContent.tsx'
+import { IDropdownProps } from '../../types/types.ts'
 
 const NOOP = () => {}
 
@@ -15,26 +9,25 @@ export function Dropdown({
   button,
   children,
   isOpen,
-  onClose = NOOP,
+  dropdownRoot,
   onOpen = NOOP,
+  onClose = NOOP,
 }: IDropdownProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(isOpen)
+  const buttonRef = useRef<HTMLDivElement>(null)
   useEffect(() => setIsDropdownOpen(isOpen), [isOpen])
   useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [isDropdownOpen])
-
-  const handleOpen = () => {
-    if (isOpen === undefined) {
-      setIsDropdownOpen(!isDropdownOpen)
-    }
+  const handleOpen = (e: MouseEvent) => {
+    setIsDropdownOpen(!isDropdownOpen)
   }
 
   return (
-    <div className={styles.container}>
-      <div onClick={handleOpen}>{button}</div>
+    <div className={`${styles.container} position-relative`}>
+      <div ref={buttonRef} onClick={handleOpen}>
+        {button}
+      </div>
       {isDropdownOpen && (
-        <div className={styles.listContainer}>
-          <div className={styles.list}>{children}</div>
-        </div>
+        <DropdownContent children={children} dropdownRoot={dropdownRoot} />
       )}
     </div>
   )

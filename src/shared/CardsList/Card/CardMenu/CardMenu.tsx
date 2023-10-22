@@ -9,6 +9,8 @@ export function CardMenu() {
   return (
     <div className={styles.menu}>
       <Dropdown
+        isOpen={false}
+        dropdownRoot={'#dropdown_root'}
         button={
           <Button
             className={styles.menuButton}
