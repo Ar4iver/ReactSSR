@@ -1,0 +1,15 @@
+.commentsList {
+    display: flex;
+    gap: 27px;
+
+    li {
+        display: flex;
+        align-items: center;
+
+        button {
+            gap: 6px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

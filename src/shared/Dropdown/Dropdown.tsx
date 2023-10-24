@@ -22,7 +22,7 @@ export function Dropdown({
   }
 
   return (
-    <div className={`${styles.container} position-relative`}>
+    <div className={styles.container}>
       <div ref={buttonRef} onClick={handleOpen}>
         {button}
       </div>

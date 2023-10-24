@@ -3,6 +3,7 @@ import styles from './styles/post.scss'
 import ReactDOM from 'react-dom'
 import { ISinglePost } from '../../types/types'
 import { CommentForm } from '../CommentForm/CommentForm.tsx'
+import { CommentList } from '../CommentList/CommentList.tsx'
 
 export const Post = ({ onClose }: ISinglePost) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -33,6 +34,7 @@ export const Post = ({ onClose }: ISinglePost) => {
         <p>Контент</p>
       </div>
       <CommentForm />
+      <CommentList />
     </div>,
     node
   )
