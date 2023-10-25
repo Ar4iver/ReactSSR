@@ -33,6 +33,7 @@ export interface IPost {
 }
 
 export interface ISinglePost {
+  username: string
   onClose?: () => void
 }
 
@@ -54,6 +55,7 @@ export interface ICardUserBoxProps {
 
 export interface ICardUserBoxTitle {
   title: string
+  username: string
 }
 
 export interface ICardPreviewProps {

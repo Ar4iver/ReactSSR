@@ -18,7 +18,7 @@ export function CardUserBox({ avatar, username, title }: ICardUserBoxProps) {
           назад
         </span>
       </div>
-      <Title title={title} />
+      <Title title={title} username={username} />
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { ISinglePost } from '../../types/types'
 import { CommentForm } from '../CommentForm/CommentForm.tsx'
 import { CommentList } from '../CommentList/CommentList.tsx'
 
-export const Post = ({ onClose }: ISinglePost) => {
+export const Post = ({ onClose, username }: ISinglePost) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const Post = ({ onClose }: ISinglePost) => {
         <p>Контент</p>
         <p>Контент</p>
       </div>
-      <CommentForm />
+      <CommentForm username={username} />
       <CommentList />
     </div>,
     node
