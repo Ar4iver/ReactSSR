@@ -1,31 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../../store/slices/tokenSlice.ts'
 
 export const useToken = () => {
-  const [token, setToken] = useState('')
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (window._token_) {
-      setToken(window._token_)
+      dispatch(setToken(window._token_))
     }
-  }, [])
-
-  return [token]
+  }, [dispatch])
 }
-
-// export const useToken = () => {
-//   const [token, setToken] = useState(() => {
-//     if (typeof window !== 'undefined') {
-//       return localStorage.getItem('access_token') || ''
-//     }
-//     return ''
-//   })
-
-//   useEffect(() => {
-//     if (typeof window !== 'undefined' && window._token_) {
-//       setToken(window._token_)
-//       localStorage.setItem('access_token', window._token_)
-//     }
-//   }, [])
-
-//   return [token]
-// }

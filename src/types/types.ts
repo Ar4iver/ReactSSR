@@ -1,5 +1,3 @@
-import { ReactNode } from 'react'
-
 export interface IUserData {
   name?: string
   iconImg?: string
