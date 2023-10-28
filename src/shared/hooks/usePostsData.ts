@@ -9,10 +9,8 @@ export const usePostsData = () => {
   const token = useSelector<RootState>((state) => state.token.token)
   const [data, setData] = useState<IPost[]>([])
 
-  console.log(token)
-
   useEffect(() => {
-    if (token !== null) {
+    if (token && token !== 'undefined') {
       dispatch(setLoading(true))
       axios
         .get('https://oauth.reddit.com/best.json?sr_detail=true', {
@@ -29,7 +27,7 @@ export const usePostsData = () => {
         .catch()
       dispatch(setLoading(false))
     }
-  }, [token])
+  }, [token, dispatch])
 
   return [data]
 }

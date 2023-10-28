@@ -15,8 +15,14 @@ const tokenSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload
     },
+    loadToken: (state) => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        state.token = token
+      }
+    },
   },
 })
 
-export const { setToken, setLoading } = tokenSlice.actions
+export const { setToken, setLoading, loadToken } = tokenSlice.actions
 export default tokenSlice.reducer
