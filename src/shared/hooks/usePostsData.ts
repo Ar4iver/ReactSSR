@@ -3,6 +3,7 @@ import axios from 'axios'
 import { IPost } from '../../types/types.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '../../store/slices/tokenSlice.ts'
+import { RootState } from '../../types/types.ts'
 
 export const usePostsData = () => {
   const dispatch = useDispatch()

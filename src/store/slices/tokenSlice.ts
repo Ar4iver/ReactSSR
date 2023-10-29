@@ -1,4 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import {
+  SetLoadingAction,
+  SetTokenAction,
+  TokenState,
+} from '../../types/types.ts'
 
 const initialState: TokenState = {
   token: null,
@@ -9,10 +14,10 @@ const tokenSlice = createSlice({
   name: 'token',
   initialState,
   reducers: {
-    setToken(state, action: PayloadAction<string>) {
+    setToken(state, action: PayloadAction<SetTokenAction['payload']>) {
       state.token = action.payload
     },
-    setLoading(state, action: PayloadAction<boolean>) {
+    setLoading(state, action: PayloadAction<SetLoadingAction['payload']>) {
       state.loading = action.payload
     },
     loadToken: (state) => {

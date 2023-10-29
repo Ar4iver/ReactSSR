@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../types/types.ts'
+import { setUser, setUserError } from '../../store/slices/userSlice.ts'
 
 interface IUserData {
   name?: string
@@ -8,10 +10,14 @@ interface IUserData {
 }
 
 export const useUserData = () => {
-  const [data, setData] = useState<IUserData>({})
+  const data = useSelector<RootState, IUserData>((state) => state.user)
   const token = useSelector<RootState>((state) => state.token.token)
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    if (!token) return
+
+    dispatch({ type: 'ME_REQUEST' })
     if (token && token !== 'undefined') {
       axios
         .get('https://oauth.reddit.com/api/v1/me?raw_json=1', {
@@ -19,9 +25,12 @@ export const useUserData = () => {
         })
         .then((res) => {
           const userData = res.data
-          setData({ name: userData.name, iconImg: userData.icon_img })
+          dispatch(setUser({ name: userData.name, iconImg: userData.icon_img }))
         })
-        .catch()
+        .catch((error) => {
+          console.log('ошибка')
+          dispatch(setUserError(error))
+        })
     }
   }, [token])
 

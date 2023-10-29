@@ -85,3 +85,31 @@ export interface IDropdownContent {
   children: React.ReactNode
   dropdownRoot: string
 }
+
+export interface TokenState {
+  token: string | null
+  loading: boolean
+}
+
+export interface RootState {
+  tokenReducer: TokenState
+  userReducer: UserState
+  token: TokenState
+  user: UserState
+}
+
+export interface SetTokenAction {
+  type: 'setToken' | '_token_'
+  payload: string
+}
+
+export interface SetLoadingAction {
+  type: string
+  payload: boolean
+}
+
+export interface UserState {
+  name: string
+  iconImg: string
+  error: null
+}
