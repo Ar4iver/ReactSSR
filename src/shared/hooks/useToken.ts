@@ -7,7 +7,7 @@ export const useToken = () => {
 
   useEffect(() => {
     if (window._token_ && window._token_ !== 'undefined') {
-      dispatch(saveToken(window._token_))
+      dispatch<any>(saveToken())
     }
   }, [dispatch])
 }

@@ -1,5 +1,12 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+  Action,
+  PayloadAction,
+  ThunkAction,
+  createAsyncThunk,
+  createSlice,
+} from '@reduxjs/toolkit'
+import {
+  RootState,
   SetLoadingAction,
   SetTokenAction,
   TokenState,
@@ -10,13 +17,13 @@ const initialState: TokenState = {
   loading: false,
 }
 
-export const saveToken = createAsyncThunk(
-  'token/saveToken',
-  (token: string, { dispatch }) => {
-    localStorage.setItem('token', token)
-    dispatch(setToken(token))
+export const saveToken =
+  (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+    if (window._token_) {
+      localStorage.setItem('token', window._token_)
+      dispatch(setToken(window._token_))
+    }
   }
-)
 
 const tokenSlice = createSlice({
   name: 'token',
