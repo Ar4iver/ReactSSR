@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
   SetLoadingAction,
   SetTokenAction,
@@ -9,6 +9,14 @@ const initialState: TokenState = {
   token: null,
   loading: false,
 }
+
+export const saveToken = createAsyncThunk(
+  'token/saveToken',
+  (token: string, { dispatch }) => {
+    localStorage.setItem('token', token)
+    dispatch(setToken(token))
+  }
+)
 
 const tokenSlice = createSlice({
   name: 'token',
