@@ -29,12 +29,14 @@ const tokenSlice = createSlice({
   name: 'token',
   initialState,
   reducers: {
+    ///Редьюсер setToken обновляет состояние в Redux, устанавливая значение поля token в состоянии слайса равным значению payload из объекта действия.
     setToken(state, action: PayloadAction<SetTokenAction['payload']>) {
       state.token = action.payload
     },
     setLoading(state, action: PayloadAction<SetLoadingAction['payload']>) {
       state.loading = action.payload
     },
+    //Редьюсер loadToken предназначен для загрузки токена из localStorage и обновления поля token в состоянии слайса в Redux.
     loadToken: (state) => {
       const token = localStorage.getItem('token')
       if (token) {

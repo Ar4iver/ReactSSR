@@ -1,49 +1,44 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import styles from './styles/commentForm.scss'
-import { commentContext } from '../context/commentContext.ts'
-import { useStore } from 'react-redux'
 
 export interface ICommentFormProps {
   username?: string
 }
 
 export const CommentForm = ({ username }: ICommentFormProps) => {
-  const { onChange } = useContext(commentContext)
-  const [text, setText] = useState(username ? `${username}, ` : '')
-
-  const ref = useRef<HTMLTextAreaElement>(null)
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.focus()
-      const length = text.length
-      ref.current.setSelectionRange(length, length)
-    }
-  }, [])
-
+  const [value, setValue] = useState('')
+  const [touched, setTouched] = useState(false)
+  const [valueError, setValueError] = useState('')
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    setText(event.target.value)
-    onChange(event.target.value)
+    setValue(event.target.value)
   }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
+    setTouched(true)
+
+    setValueError(validateValue())
+
+    const isFormValid = !validateValue()
+    if (!isFormValid) return
+
+    alert('Форма отправлена')
+  }
+
+  function validateValue() {
+    if (value.length <= 3) return 'Введите больше 3-х символов'
+    return ''
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <textarea
-        ref={ref}
         className={styles.input}
-        value={text}
+        value={value}
         onChange={handleChange}
+        aria-invalid={valueError ? 'true' : 'false'}
       />
+      {touched && valueError && <div>{valueError}</div>}
       <button type="submit" className={styles.button}>
         Комментировать
       </button>
