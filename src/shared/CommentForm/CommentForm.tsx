@@ -1,44 +1,68 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import styles from './styles/commentForm.scss'
+import { Controller, useForm } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
 
 export interface ICommentFormProps {
   username?: string
 }
 
 export const CommentForm = ({ username }: ICommentFormProps) => {
-  const [value, setValue] = useState('')
-  const [touched, setTouched] = useState(false)
-  const [valueError, setValueError] = useState('')
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    setValue(event.target.value)
-  }
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    control,
+  } = useForm({
+    criteriaMode: 'all',
+  })
 
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault()
-    setTouched(true)
+  const [comment, setComment] = useState(`Привет, ${username}!`)
 
-    setValueError(validateValue())
-
-    const isFormValid = !validateValue()
-    if (!isFormValid) return
-
+  const onSubmit = () => {
     alert('Форма отправлена')
   }
 
-  function validateValue() {
-    if (value.length <= 3) return 'Введите больше 3-х символов'
-    return ''
+  const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value)
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <textarea
-        className={styles.input}
-        value={value}
-        onChange={handleChange}
-        aria-invalid={valueError ? 'true' : 'false'}
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="textAreaInput"
+        control={control}
+        rules={{ required: 'Вы не можете отправить пустой комментарий' }}
+        defaultValue={comment}
+        render={({ field }) => (
+          <>
+            <textarea
+              placeholder="Введите комментарий"
+              aria-invalid={errors.comment ? 'true' : 'false'}
+              {...field}
+              value={comment}
+              {...register('textAreaInput', {
+                minLength: {
+                  value: 3,
+                  message: 'Введите более 3-x символов',
+                },
+              })}
+              onChange={handleCommentChange}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="textAreaInput"
+              render={({ messages }) => {
+                return messages
+                  ? Object.entries(messages).map(([type, message]) => (
+                      <p key={type}>{message}</p>
+                    ))
+                  : null
+              }}
+            />
+          </>
+        )}
       />
-      {touched && valueError && <div>{valueError}</div>}
       <button type="submit" className={styles.button}>
         Комментировать
       </button>
