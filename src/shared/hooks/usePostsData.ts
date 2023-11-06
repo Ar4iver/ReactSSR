@@ -12,21 +12,24 @@ export const usePostsData = () => {
 
   useEffect(() => {
     if (token && token !== 'undefined') {
-      dispatch(setLoading(true))
-      axios
-        .get('https://oauth.reddit.com/best.json?sr_detail=true', {
-          headers: { Authorization: `bearer ${token}` },
-          params: {
-            limit: 25,
-          },
-        })
-        .then((res) => {
-          const postsData = res.data.data.children
-          console.log(postsData)
-          setData(postsData)
-        })
-        .catch()
-      dispatch(setLoading(false))
+      async function load() {
+        dispatch(setLoading(true))
+        await axios
+          .get('https://oauth.reddit.com/best.json?sr_detail=true', {
+            headers: { Authorization: `bearer ${token}` },
+            params: {
+              limit: 100,
+            },
+          })
+          .then((res) => {
+            const postsData = res.data.data.children
+            console.log(postsData)
+            setData(postsData)
+          })
+          .catch()
+        dispatch(setLoading(false))
+      }
+      load()
     }
   }, [token, dispatch])
 

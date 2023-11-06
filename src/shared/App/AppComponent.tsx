@@ -20,16 +20,14 @@ const AppComponent = () => {
 
   return (
     <>
-      <PostsContextProvider>
-        <UserContextProvider>
-          <Layout>
-            <Header />
-            <Content>
-              <CardsList />
-            </Content>
-          </Layout>
-        </UserContextProvider>
-      </PostsContextProvider>
+      <UserContextProvider>
+        <Layout>
+          <Header />
+          <Content>
+            <CardsList />
+          </Content>
+        </Layout>
+      </UserContextProvider>
     </>
   )
 }

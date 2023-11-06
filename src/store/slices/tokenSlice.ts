@@ -2,7 +2,6 @@ import {
   Action,
   PayloadAction,
   ThunkAction,
-  createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
 import {
@@ -14,7 +13,7 @@ import {
 
 const initialState: TokenState = {
   token: null,
-  loading: false,
+  loading: true,
 }
 
 export const saveToken =

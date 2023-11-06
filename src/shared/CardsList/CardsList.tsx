@@ -1,12 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useEffect } from 'react'
 import styles from './cardslist.scss'
 import { Card } from './Card/Card.tsx'
-import { postsContext } from '../context/PostsContext.tsx'
-import { IPost } from '../../types/types.ts'
+import { IPost, RootState } from '../../types/types.ts'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts } from '../../store/slices/postsSlice.ts'
 
 export function CardsList() {
-  const postsData = useContext(postsContext)
-  return postsData.length !== 0 ? (
+  const dispatch = useDispatch<any>()
+  const token = useSelector((state: RootState) => state.token.token)
+  const loading = useSelector((state: RootState) => state.posts.loading)
+  const postsData = useSelector((state: RootState) => state.posts.posts)
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchPosts(token))
+    }
+  }, [dispatch, token])
+
+  return !loading ? (
     <ul className={styles.cardsList}>
       {postsData.map((post: IPost) => (
         <Card
@@ -21,6 +31,6 @@ export function CardsList() {
       ))}
     </ul>
   ) : (
-    <h1>Авторизуйтесь</h1>
+    <h1>Загрузка постов...</h1>
   )
 }

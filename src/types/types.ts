@@ -91,11 +91,18 @@ export interface TokenState {
   loading: boolean
 }
 
+export interface LoadingState {
+  loading: boolean
+}
+
 export interface RootState {
+  postsReducer: PostsState
+  posts: PostsState
   tokenReducer: TokenState
   userReducer: UserState
   token: TokenState
   user: UserState
+  loading: LoadingState
 }
 
 export interface SetTokenAction {
@@ -112,4 +119,15 @@ export interface UserState {
   name: string
   iconImg: string
   error: null
+}
+
+export interface PostsState {
+  posts: IPost[]
+  loading: boolean
+  error: string | null
+}
+
+export interface ISetPostAction {
+  payload: IPost[]
+  loading: boolean
 }
