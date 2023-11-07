@@ -13,6 +13,7 @@ import {
 
 const initialState: TokenState = {
   token: null,
+  after: null,
   loading: true,
 }
 

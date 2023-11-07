@@ -19,11 +19,15 @@ interface IPostDataDetail {
 
 interface IPostData {
   id: string
+  after: null
   sr_detail: IPostDataDetail
 }
 
 export interface IPost {
+  sr_detail: any
+  id: string | number
   data: IPostData
+  after: string | null
   avatar: string
   username: string
   title: string
@@ -88,6 +92,7 @@ export interface IDropdownContent {
 
 export interface TokenState {
   token: string | null
+  after: string | null
   loading: boolean
 }
 
@@ -123,8 +128,8 @@ export interface UserState {
 
 export interface PostsState {
   posts: IPost[]
-  loading: boolean
   after: string | null
+  loading: boolean
   error: string | null
 }
 

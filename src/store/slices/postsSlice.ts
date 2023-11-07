@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { ISetPostAction, PostsState } from '../../types/types'
+import { IPost, PostsState } from '../../types/types'
 import axios from 'axios'
 
 const initialState: PostsState = {
@@ -12,10 +12,7 @@ const initialState: PostsState = {
 //асинхронный экшн
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
-  async (
-    token,
-    after
-  ): Promise<{ token: string | null; after: string | null }> => {
+  async ({ token, after }: { token: string | null; after: null | string }) => {
     const response = await axios.get(
       'https://oauth.reddit.com/best.json?sr_detail=true',
       {
@@ -23,7 +20,7 @@ export const fetchPosts = createAsyncThunk(
         params: { limit: 3, after },
       }
     )
-    return response.data.data.children
+    return response.data.data
   }
 )
 
@@ -34,9 +31,17 @@ const postsSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload
     }, //обновление глобального состояния свойства loading в true или false
-    setPosts: (state, action: PayloadAction<ISetPostAction['payload']>) => {
-      state.posts = [...state.posts, ...action.payload]
+    setPosts: (state, action: PayloadAction<PostsState>) => {
+      // Предполагается, что action.payload уже имеет структуру { posts: [...], after: "...", ... }
+      const newPosts = action.payload.posts.filter(
+        (newPost: IPost) =>
+          !state.posts.find((existingPost) => existingPost.id === newPost.id)
+      )
+      // Добавляем только уникальные новые посты
+      state.posts = [...state.posts, ...newPosts]
       state.loading = false
+      // Обновляем after здесь, если action.payload содержит это значение
+      state.after = action.payload.after
     }, //обновление глобального состояния свойства items с постами и флаг загрузки этих постов.
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload
@@ -50,9 +55,22 @@ const postsSlice = createSlice({
         state.error = null
       }) //Что будет в процессе чтения
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.posts = [...state.posts]
+        // Используйте action.payload.children для новых постов
+        const newPosts = action.payload.children
+          .filter(
+            (newPost: IPost) =>
+              !state.posts.find(
+                (existingPost) => existingPost.id === newPost.id
+              )
+          )
+          .map((child: any) => child.data) // Предполагается, что структура поста находится в child.data
+
+        // Добавляем новые посты к существующим
+        state.posts = [...state.posts, ...newPosts]
+
+        // Сохраняем значение after для последующих запросов на подгрузку постов
         state.after = action.payload.after
-        state.loading = false
+        state.loading = false //false
       }) //что будет с результатом выполнения
       .addCase(fetchPosts.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false

@@ -3,3 +3,16 @@
     padding: 40px 0;
   }
 }
+
+.wrapperList {
+  display: flex;
+  flex-direction: column;
+
+  & .moreLoadingButton {
+    margin: 0 auto;
+    border: 1px solid orange;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 20px;
+  }
+}

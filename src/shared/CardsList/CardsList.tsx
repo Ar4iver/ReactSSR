@@ -8,38 +8,46 @@ import { fetchPosts } from '../../store/slices/postsSlice.ts'
 export function CardsList() {
   const dispatch = useDispatch<any>()
   const token = useSelector((state: RootState) => state.token.token)
-  const loading = useSelector((state: RootState) => state.posts.loading)
+  const loadingPosts = useSelector((state: RootState) => state.posts.loading)
   const postsData = useSelector((state: RootState) => state.posts.posts)
+  const after = useSelector((state: RootState) => state.posts.after)
+
   useEffect(() => {
     if (token) {
-      dispatch(fetchPosts(token))
+      dispatch(fetchPosts({ token, after }))
     }
   }, [dispatch, token])
 
-  return !loading ? (
-    <>
+  const handleFetchMorePosts = () => {
+    dispatch(fetchPosts({ token, after }))
+  }
+
+  console.log(postsData)
+
+  return (
+    <div className={styles.wrapperList}>
       <ul className={styles.cardsList}>
         {postsData.map((post: IPost) => (
           <Card
-            key={post.data.id}
-            postId={post.data.id}
-            title={post.data.sr_detail.title}
-            previewImg={post.data.sr_detail.header_img}
-            avatar={post.data.sr_detail.icon_img}
-            username={post.data.sr_detail.name}
-            content={post.data.sr_detail.description}
+            key={post.id}
+            postId={post.id}
+            title={post.sr_detail.title}
+            previewImg={post.sr_detail.header_img}
+            avatar={post.sr_detail.icon_img}
+            username={post.sr_detail.name}
+            content={post.sr_detail.description}
           />
         ))}
       </ul>
-      <button
-        onClick={() =>
-          dispatch(fetchPosts({ token, after: postsData.after || null }))
-        }
-      >
-        Показать еще
-      </button>
-    </>
-  ) : (
-    <h1>Загрузка постов...</h1>
+      {loadingPosts && <h1>Загрузка постов...</h1>}
+      {postsData.length != 0 && !loadingPosts && (
+        <button
+          className={styles.moreLoadingButton}
+          onClick={handleFetchMorePosts}
+        >
+          Показать еще
+        </button>
+      )}
+    </div>
   )
 }
