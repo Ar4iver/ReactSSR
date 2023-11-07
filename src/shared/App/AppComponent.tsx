@@ -15,7 +15,7 @@ const AppComponent = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadToken()) //получил токен из редакса
+    dispatch(loadToken()) //получил токен из localStorage и сохранил его в Redux
   }, [dispatch])
 
   return (

@@ -124,6 +124,7 @@ export interface UserState {
 export interface PostsState {
   posts: IPost[]
   loading: boolean
+  after: string | null
   error: string | null
 }
 

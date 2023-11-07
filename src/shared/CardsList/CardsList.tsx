@@ -17,19 +17,28 @@ export function CardsList() {
   }, [dispatch, token])
 
   return !loading ? (
-    <ul className={styles.cardsList}>
-      {postsData.map((post: IPost) => (
-        <Card
-          key={post.data.id}
-          postId={post.data.id}
-          title={post.data.sr_detail.title}
-          previewImg={post.data.sr_detail.header_img}
-          avatar={post.data.sr_detail.icon_img}
-          username={post.data.sr_detail.name}
-          content={post.data.sr_detail.description}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className={styles.cardsList}>
+        {postsData.map((post: IPost) => (
+          <Card
+            key={post.data.id}
+            postId={post.data.id}
+            title={post.data.sr_detail.title}
+            previewImg={post.data.sr_detail.header_img}
+            avatar={post.data.sr_detail.icon_img}
+            username={post.data.sr_detail.name}
+            content={post.data.sr_detail.description}
+          />
+        ))}
+      </ul>
+      <button
+        onClick={() =>
+          dispatch(fetchPosts({ token, after: postsData.after || null }))
+        }
+      >
+        Показать еще
+      </button>
+    </>
   ) : (
     <h1>Загрузка постов...</h1>
   )

@@ -1,23 +1,26 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { ISetPostAction, PostsState } from '../../types/types'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store'
 
 const initialState: PostsState = {
   posts: [],
   loading: false,
+  after: null,
   error: null,
 }
 
+//асинхронный экшн
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
-  async (token: string | null) => {
+  async (
+    token,
+    after
+  ): Promise<{ token: string | null; after: string | null }> => {
     const response = await axios.get(
       'https://oauth.reddit.com/best.json?sr_detail=true',
       {
         headers: { Authorization: `bearer ${token}` },
-        params: { limit: 100 },
+        params: { limit: 3, after },
       }
     )
     return response.data.data.children
@@ -45,15 +48,16 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.pending, (state) => {
         state.loading = true
         state.error = null
-      })
+      }) //Что будет в процессе чтения
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.posts = action.payload
+        state.posts = [...state.posts]
+        state.after = action.payload.after
         state.loading = false
-      })
+      }) //что будет с результатом выполнения
       .addCase(fetchPosts.rejected, (state, action: PayloadAction<any>) => {
         state.loading = false
         state.error = action.payload
-      })
+      }) //В случае ошибки
   },
 })
 
