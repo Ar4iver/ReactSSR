@@ -1,32 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles/title.scss'
 import { ICardUserBoxTitle } from '../../../../../types/types'
-import { Post } from '../../../../Post/Post.tsx'
+import { Link } from 'react-router-dom'
 
-const Title = ({ title, username }: ICardUserBoxTitle) => {
-  const [isModelOpened, setIsModelOpened] = useState(false)
+const Title = ({ title, postId }: ICardUserBoxTitle) => {
   return (
     <h2 className={styles.title}>
-      <a
-        href="#post-url"
-        className={styles.postLink}
-        onClick={(event) => {
-          event.preventDefault()
-          setTimeout(() => {
-            setIsModelOpened(true)
-          }, 0)
-        }}
-      >
+      <Link to={`/posts/${postId}`} className={styles.postLink}>
         {title}
-      </a>
-      {isModelOpened && (
-        <Post
-          username={username}
-          onClose={() => {
-            setIsModelOpened(false)
-          }}
-        />
-      )}
+      </Link>
     </h2>
   )
 }

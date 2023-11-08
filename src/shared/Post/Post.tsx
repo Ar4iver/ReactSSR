@@ -4,20 +4,27 @@ import ReactDOM from 'react-dom'
 import { ISinglePost } from '../../types/types'
 import { CommentForm } from '../CommentForm/CommentForm.tsx'
 import { CommentList } from '../CommentList/CommentList.tsx'
+import { useNavigate } from 'react-router-dom'
 
-export const Post = ({ onClose, username }: ISinglePost) => {
+export const Post = ({ username }: ISinglePost) => {
+  const navigate = useNavigate()
   const ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    function handleClick(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        onClose?.()
-      }
-    }
+  ///?? сначала переход на пост затем сразу срабатывает handleClick
 
-    document.addEventListener('click', handleClick)
+  function handleClick(event: MouseEvent) {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      navigate('/posts')
+    }
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.addEventListener('click', handleClick)
+    }, 0)
 
     return () => {
+      clearTimeout(timer)
       document.removeEventListener('click', handleClick)
     }
   }, [])

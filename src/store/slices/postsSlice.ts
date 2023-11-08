@@ -55,7 +55,7 @@ const postsSlice = createSlice({
         state.error = null
       }) //Что будет в процессе чтения
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        // Используйте action.payload.children для новых постов
+        // action.payload.children для новых постов
         const newPosts = action.payload.children
           .filter(
             (newPost: IPost) =>

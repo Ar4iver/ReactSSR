@@ -4,6 +4,7 @@ import { Card } from './Card/Card.tsx'
 import { IPost, RootState } from '../../types/types.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPosts } from '../../store/slices/postsSlice.ts'
+import { Outlet } from 'react-router-dom'
 
 export function CardsList() {
   const dispatch = useDispatch<any>()
@@ -48,6 +49,7 @@ export function CardsList() {
           Показать еще
         </button>
       )}
+      <Outlet />
     </div>
   )
 }

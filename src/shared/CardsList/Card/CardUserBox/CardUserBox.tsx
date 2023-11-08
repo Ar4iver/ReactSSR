@@ -3,7 +3,12 @@ import styles from './carduserbox.scss'
 import Title from './Title/Title.tsx'
 import { ICardUserBoxProps } from '../../../../types/types.ts'
 
-export function CardUserBox({ avatar, username, title }: ICardUserBoxProps) {
+export function CardUserBox({
+  avatar,
+  username,
+  title,
+  postId,
+}: ICardUserBoxProps) {
   return (
     <div className={styles.textContent}>
       <div className={styles.metaData}>
@@ -18,7 +23,7 @@ export function CardUserBox({ avatar, username, title }: ICardUserBoxProps) {
           назад
         </span>
       </div>
-      <Title title={title} username={username} />
+      <Title postId={postId} title={title} />
     </div>
   )
 }

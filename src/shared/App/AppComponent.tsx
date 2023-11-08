@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { PostsContextProvider } from '../context/PostsContext.tsx'
 import { UserContextProvider } from '../context/userContext.tsx'
 import { Layout } from '../Layout/Layout.tsx'
 import { Header } from '../Header/Header.tsx'
@@ -8,6 +7,7 @@ import { CardsList } from '../CardsList/CardsList.tsx'
 import { useToken } from '../hooks/useToken.ts'
 import { useDispatch } from 'react-redux'
 import { loadToken } from '../../store/slices/tokenSlice.ts'
+import { AppRouter } from '../router/AppRouter.tsx'
 
 const AppComponent = () => {
   useToken()
@@ -24,7 +24,7 @@ const AppComponent = () => {
         <Layout>
           <Header />
           <Content>
-            <CardsList />
+            <AppRouter />
           </Content>
         </Layout>
       </UserContextProvider>
