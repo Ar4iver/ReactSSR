@@ -24,6 +24,10 @@ export const fetchPosts = createAsyncThunk(
   }
 )
 
+//вытаскиваем пост по id
+export const selectPostById = (state: any, postId: any) =>
+  state.posts.posts.find((post: any) => post.id === postId)
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState,

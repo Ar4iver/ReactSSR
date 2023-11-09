@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react'
 import styles from './styles/post.scss'
 import ReactDOM from 'react-dom'
-import { ISinglePost } from '../../types/types'
 import { CommentForm } from '../CommentForm/CommentForm.tsx'
 import { CommentList } from '../CommentList/CommentList.tsx'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectPostById } from '../../store/slices/postsSlice.ts'
+import { RootState } from '../../store/store.ts'
 
-export const Post = ({ username }: ISinglePost) => {
+export const Post = () => {
+  const { id } = useParams()
+  const post: any = useSelector<RootState>((state) => selectPostById(state, id))
   const navigate = useNavigate()
   const ref = useRef<HTMLDivElement>(null)
 
@@ -40,7 +44,7 @@ export const Post = ({ username }: ISinglePost) => {
         <p>Контент</p>
         <p>Контент</p>
       </div>
-      <CommentForm username={username} />
+      <CommentForm postId={post.id} username={post.author} />
       <CommentList />
     </div>,
     node

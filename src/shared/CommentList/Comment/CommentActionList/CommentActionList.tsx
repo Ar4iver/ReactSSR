@@ -41,7 +41,9 @@ export const CommentActionsList = ({ username }: ICommentActionListProps) => {
           </Button>
         </li>
       </ul>
-      {isOpen && <CommentForm username={username} />}
+      {isOpen && (
+        <CommentForm postId="replyToCommentator" username={username} />
+      )}
     </>
   )
 }

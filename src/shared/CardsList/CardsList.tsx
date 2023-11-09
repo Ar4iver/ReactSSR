@@ -23,8 +23,6 @@ export function CardsList() {
     dispatch(fetchPosts({ token, after }))
   }
 
-  console.log(postsData)
-
   return (
     <div className={styles.wrapperList}>
       <ul className={styles.cardsList}>
@@ -35,7 +33,7 @@ export function CardsList() {
             title={post.sr_detail.title}
             previewImg={post.sr_detail.header_img}
             avatar={post.sr_detail.icon_img}
-            username={post.sr_detail.name}
+            author={post.author}
             content={post.sr_detail.description}
           />
         ))}

@@ -5,7 +5,7 @@ import { ICardUserBoxProps } from '../../../../types/types.ts'
 
 export function CardUserBox({
   avatar,
-  username,
+  author,
   title,
   postId,
 }: ICardUserBoxProps) {
@@ -15,7 +15,7 @@ export function CardUserBox({
         <div className={styles.userLink}>
           <img className={styles.avatar} src={avatar} alt="avatar" />
           <a className={styles.username} href="#user-url">
-            {username}
+            {author}
           </a>
         </div>
         <span className={styles.createdAt}>

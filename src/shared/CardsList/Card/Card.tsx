@@ -10,7 +10,7 @@ export function Card({
   title,
   avatar,
   content,
-  username,
+  author,
   previewImg,
   postId,
 }: ICardProps) {
@@ -18,7 +18,7 @@ export function Card({
     <li className={styles.card}>
       <CardUserBox
         avatar={avatar}
-        username={username}
+        author={author}
         title={title}
         postId={postId}
       />

@@ -1,13 +1,15 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import styles from './styles/commentForm.scss'
 import { Controller, useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
+import { useCommentStore } from '../../zustandStore/store.ts'
 
-export interface ICommentFormProps {
-  username?: string
+interface ICommentFormProps {
+  postId: string
+  username: string
 }
 
-export const CommentForm = ({ username }: ICommentFormProps) => {
+export const CommentForm = ({ postId, username }: ICommentFormProps) => {
   const {
     register,
     formState: { errors },
@@ -15,16 +17,26 @@ export const CommentForm = ({ username }: ICommentFormProps) => {
     control,
   } = useForm({
     criteriaMode: 'all',
+    defaultValues: {
+      textAreaInput: `Привет, ${username}`,
+    },
   })
 
-  const [comment, setComment] = useState(`Привет, ${username}!`)
+  const { comments, setCommentState } = useCommentStore()
 
   const onSubmit = () => {
     alert('Форма отправлена')
   }
 
+  useEffect(() => {
+    setCommentState(postId, `Привет, ${username}!`)
+  }, [postId, username, setCommentState])
+
+  const comment = comments[postId] || ''
+
   const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value)
+    setCommentState(postId, e.target.value)
+    console.log(comments)
   }
 
   return (
@@ -38,7 +50,7 @@ export const CommentForm = ({ username }: ICommentFormProps) => {
           <>
             <textarea
               placeholder="Введите комментарий"
-              aria-invalid={errors.comment ? 'true' : 'false'}
+              // aria-invalid={errors.comment ? 'true' : 'false'}
               {...field}
               value={comment}
               {...register('textAreaInput', {

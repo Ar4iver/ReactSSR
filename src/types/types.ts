@@ -24,6 +24,7 @@ interface IPostData {
 }
 
 export interface IPost {
+  author: string
   sr_detail: any
   id: string | number
   data: IPostData
@@ -39,10 +40,10 @@ export interface ISinglePost {
 }
 
 export interface ICardProps {
+  author: string
   postId: number | string
   avatar: string
   previewImg: string
-  username: string
   title: string
   content: string
 }
@@ -50,7 +51,7 @@ export interface ICardProps {
 export interface ICardUserBoxProps {
   postId: string | number
   avatar: string
-  username: string
+  author: string
   title: string
 }
 
